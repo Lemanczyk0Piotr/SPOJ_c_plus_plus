@@ -2,6 +2,8 @@
 #include <fstream>
 #include <vector>
 #include <cmath>
+#include <algorithm>
+
 using namespace std;
 
 // Funkcja sprawdzająca, czy liczba jest potęgą liczby 3
@@ -34,12 +36,6 @@ int sumOfFactorialOfDigits(int num) {
     return sum;
 }
 
-// Funkcja do obliczenia największego wspólnego dzielnika dwóch liczb
-int gcd(int a, int b) {
-    if (b == 0)
-        return a;
-    return gcd(b, a % b);
-}
 
 int main() {
     ifstream input("liczby.txt");
@@ -79,7 +75,7 @@ int main() {
     for (int i = 0; i < numbers.size(); i++) {
         int currentNwd = numbers[i];
         for (int j = i + 1; j < numbers.size(); j++) {
-            currentNwd = gcd(currentNwd, numbers[j]);
+            currentNwd = __gcd(currentNwd, numbers[j]);
             if (currentNwd > 1 && j - i + 1 > maxDlugosc) {
                 maxDlugosc = j - i + 1;
                 miejsce = i;
