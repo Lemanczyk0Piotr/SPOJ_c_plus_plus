@@ -39,3 +39,46 @@ int main() {
 
 		return 0;
 }
+
+
+#include <iostream>
+#include <fstream>
+#include <string>
+
+using namespace std;
+
+int main() {
+		ifstream input("pary.txt"); // Otwórz plik do odczytu
+		ofstream output("wyniki4.txt"); // Otwórz plik do zapisu wyników
+
+
+		string word;
+		int liczba;
+		while (input >> liczba >> word) {
+				int max_length = 0; // Długość najdłuższego spójnego fragmentu
+				char current_char = '\0'; // Aktualna litera
+				char max_char = '\0'; // Litera z najdłuższego fragmentu
+				int current_length = 0; // Długość aktualnego fragmentu
+
+				for (char c : word) {
+						if (c == current_char) {
+								current_length++;
+						} else {
+								current_char = c;
+								current_length = 1;
+						}
+
+						if (current_length > max_length) {
+								max_length = current_length;
+								max_char = current_char;
+						}
+				}
+
+				output << max_char << " " << max_length << endl;
+		}
+
+		input.close(); // Zamknij plik wejściowy
+		output.close(); // Zamknij plik wyjściowy
+		return 0;
+}
+
