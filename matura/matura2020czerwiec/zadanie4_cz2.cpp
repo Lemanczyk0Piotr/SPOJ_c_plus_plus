@@ -74,11 +74,69 @@ int main() {
 						}
 				}
 
-				output << max_char << " " << max_length << endl;
+				for(int i = 0; i < max_length; i++){
+				output << max_char << " ";}
+
+				output << max_length << endl;
 		}
 
 		input.close(); // Zamknij plik wejściowy
 		output.close(); // Zamknij plik wyjściowy
+		return 0;
+}
+
+
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+struct Pair {
+		int number;
+		string word;
+};
+
+bool comparePairs(const Pair& pair1, const Pair& pair2) {
+		if (pair1.number == pair1.word.length() && pair2.number == pair2.word.length()) {
+				if (pair1.number == pair2.number) {
+						return pair1.word < pair2.word;
+				}
+				return pair1.number < pair2.number;
+		}
+		return false;
+}
+
+int main() {
+		ifstream inputFile("pary.txt");
+		ofstream outputFile("wyniki4.txt");
+
+		vector<Pair> pairs;
+		int smallestPairIndex = -1;
+
+		Pair currentPair;
+		int currentIndex = 1;
+		while (inputFile >> currentPair.number >> currentPair.word) {
+				pairs.push_back(currentPair);
+				if (currentPair.number == currentPair.word.length()) {
+						if (smallestPairIndex == -1 || comparePairs(currentPair, pairs[smallestPairIndex])) {
+								smallestPairIndex = currentIndex - 1;
+						}
+				}
+				currentIndex++;
+		}
+
+		if (smallestPairIndex != -1) {
+				outputFile << "1. Najmniejsza para (liczba, słowo): (" << pairs[smallestPairIndex].number << ", " << pairs[smallestPairIndex].word << ")\n";
+		} else {
+				outputFile << "Brak par spełniających kryteria." << endl;
+		}
+
+		inputFile.close();
+		outputFile.close();
+
 		return 0;
 }
 
