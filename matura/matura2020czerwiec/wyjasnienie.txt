@@ -1,0 +1,29 @@
+#include - W tej części programu zaimportowano odpowiednie nagłówki, które umożliwiają korzystanie z funkcji do obsługi plików i operacji na wektorach.
+
+using namespace std; - Ta deklaracja umożliwia korzystanie z elementów przestrzeni nazw std bez konieczności dodawania przedrostka std:: do każdego elementu, co upraszcza kod.
+
+struct Pair - Tutaj definiujemy strukturę Pair, która reprezentuje parę składającą się z liczby całkowitej (int) i ciągu znaków (string).
+
+bool comparePairs - Jest to funkcja porównująca pary Pair według opisanych w zadaniu kryteriów. Porównuje liczby i słowa w parach, uwzględniając warunek, że liczba musi być równa długości słowa.
+
+int main() - Rozpoczynamy funkcję main, która jest główną częścią programu.
+
+ifstream inputFile("pary.txt") - Tworzymy obiekt inputFile typu ifstream, który służy do odczytu danych z pliku "pary.txt".
+
+ofstream outputFile("wyniki4.txt") - Tworzymy obiekt outputFile typu ofstream, który służy do zapisu wyników do pliku "wyniki4.txt".
+
+Tworzymy wektor pairs, który będzie przechowywał pary wczytane z pliku.
+
+int smallestPairIndex = -1 - Inicjalizujemy zmienną smallestPairIndex na -1, co oznacza, że na razie nie mamy jeszcze najmniejszej pary.
+
+Pair currentPair - Tworzymy obiekt currentPair typu Pair, który służy do przechowywania aktualnie wczytanej pary z pliku.
+
+int currentIndex = 1 - Inicjalizujemy indeks currentIndex na 1, aby śledzić indeks aktualnie wczytywanej pary.
+
+W pętli while odczytujemy pary z pliku i dodajemy je do wektora pairs. Jednocześnie sprawdzamy, czy dana para spełnia warunek liczba równa długości słowa, i czy jest mniejsza od obecnie najmniejszej znalezionej pary. Jeśli tak, aktualizujemy smallestPairIndex.
+
+Po zakończeniu pętli sprawdzamy, czy udało się znaleźć jakąkolwiek parę spełniającą warunki. Jeśli tak, zapisujemy ją w pliku "wyniki4.txt" z odpowiednim numerem zadania. Jeśli nie, wyświetlamy informację o braku spełniających par.
+
+Zamykamy pliki i kończymy działanie programu.
+
+Modyfikacje w kodzie umożliwiają poprawne znalezienie i zapisanie najmniejszej pary spełniającej warunki z treści zadania.
